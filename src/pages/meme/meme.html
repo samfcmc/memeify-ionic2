@@ -1,0 +1,20 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-title>
+			{{meme.text0}}
+		</ion-title>
+		<ion-buttons start>
+			<button ion-button (click)="share()" >
+				<ion-icon name="share"></ion-icon>
+			</button>
+			<button ion-button (click)="dismiss()">
+				<span ion-text color="primary" showWhen="ios">Back</span>
+				<ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<img src="{{meme.instanceImageUrl}}">
+</ion-content>

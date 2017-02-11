@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 
 import {MemeClient} from '../../api/client';
+import {MemePage} from '../meme/meme';
 
 @Component({
   selector: 'page-feed',
@@ -13,10 +14,12 @@ export class FeedPage {
   private memes: Array<any>;
   private client: MemeClient;
   private currentPage = 0;
+  private modalController: ModalController;
 
-  constructor(public navCtrl: NavController, client: MemeClient) {
+  constructor(public navCtrl: NavController, client: MemeClient, modalController: ModalController) {
     this.client = client;
     this.memes = [];
+    this.modalController = modalController;
   }
 
   ngAfterViewInit() {
@@ -27,11 +30,11 @@ export class FeedPage {
    * Refresh the memes collection.
    * Used by pull to refresh
    */
-  private refresh(refresher) {
+  refresh(refresher) {
     this.loadMemes(0, () => refresher.complete());
   }
 
-  private loadMemes(page? : number, callback?: () => void) {
+  loadMemes(page? : number, callback?: () => void) {
     this.client.getNew(page).then((response) => {
       if(response.success) {
         var memes = response.result;
@@ -51,9 +54,14 @@ export class FeedPage {
    * Loads the next page of memes
    * Used by infinite scroll
    */
-  private loadMore(infiniteScroll) {
+  loadMore(infiniteScroll) {
     var nextPage = this.currentPage + 1;
     this.loadMemes(nextPage, () => infiniteScroll.complete());
+  }
+
+  memeClicked(meme) {
+    let modal = this.modalController.create(MemePage, meme);
+    modal.present();
   }
 
 }

@@ -14,7 +14,8 @@
   </ion-refresher>
 
   <!-- Memes -->
-  <ion-card *ngFor="let meme of memes" >
+  <ion-card *ngFor="let meme of memes" 
+  (click)="memeClicked(meme)" >
 
     <ion-card-header>
       {{meme.text0}}
