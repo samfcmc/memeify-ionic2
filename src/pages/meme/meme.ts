@@ -19,6 +19,10 @@ export class MemePage {
 		this.meme = navParams.data;
 	}
 
+	title() {
+		return this.meme.text0 ? this.meme.text0 : this.meme.text1;
+	}
+
 	dismiss() {
 		this.viewController.dismiss();
 	}

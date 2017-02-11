@@ -1,10 +1,10 @@
 <ion-header>
 	<ion-toolbar>
 		<ion-title>
-			{{meme.text0}}
+			{{title()}}
 		</ion-title>
 		<ion-buttons start>
-			<button ion-button (click)="share()" >
+			<button showWhen="android" ion-button (click)="share()" >
 				<ion-icon name="share"></ion-icon>
 			</button>
 			<button ion-button (click)="dismiss()">
@@ -12,9 +12,16 @@
 				<ion-icon name="md-close" showWhen="android,windows"></ion-icon>
 			</button>
 		</ion-buttons>
+		<ion-buttons end>
+			<button showWhen="ios" ion-button (click)="share()" >
+				<ion-icon name="share"></ion-icon>
+			</button>
+		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
 
 <ion-content>
-	<img src="{{meme.instanceImageUrl}}">
+	<div class="meme-content">
+		<img src="{{meme.instanceImageUrl}}">	
+	</div>
 </ion-content>

@@ -3,6 +3,7 @@ import { NavController, ModalController } from 'ionic-angular';
 
 import {MemeClient} from '../../api/client';
 import {MemePage} from '../meme/meme';
+import {CreatePage} from '../create/create';
 
 @Component({
   selector: 'page-feed',
@@ -62,6 +63,10 @@ export class FeedPage {
   memeClicked(meme) {
     let modal = this.modalController.create(MemePage, meme);
     modal.present();
+  }
+
+  create() {
+    this.navCtrl.push(CreatePage);
   }
 
 }
