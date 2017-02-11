@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Feed</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content
+    refreshingText="Refreshing...">
+
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <!-- Memes -->
+  <ion-card *ngFor="let meme of memes" >
+
+    <ion-card-header>
+      {{meme.text0}}
+    </ion-card-header>
+
+    <ion-card-content>
+      <img src="{{meme.instanceImageUrl}}" alt="{{meme.text0}}">
+    </ion-card-content>
+
+  </ion-card>
+
+  <!-- Infinite scroll -->
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
